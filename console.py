@@ -11,13 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
-# Users
-# d002ef88-53f2-4d63-9f07-74f954b9eefb state
-# bc9eb71f-89fa-44bc-a365-e0aef2ff8c32 user_id
 
-# 1997d81f-34d6-4e8e-afb4-b81455dceb8e user_id
-
-# places
 """
 3e88ebb2-0d15-44ce-b1df-0c0f9ec86311 city_id
 d002ef88-53f2-4d63-9f07-74f954b9eefb state_id
