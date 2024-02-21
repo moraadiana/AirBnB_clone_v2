@@ -9,7 +9,21 @@ from models.place import Place
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
-from models.review import Review 
+from models.review import Review
+
+# Users
+# d002ef88-53f2-4d63-9f07-74f954b9eefb state
+# bc9eb71f-89fa-44bc-a365-e0aef2ff8c32 user_id
+
+# 1997d81f-34d6-4e8e-afb4-b81455dceb8e user_id
+
+# places
+"""
+3e88ebb2-0d15-44ce-b1df-0c0f9ec86311 city_id
+d002ef88-53f2-4d63-9f07-74f954b9eefb state_id
+
+3e88ebb2-0d15-44ce-b1df-0c0f9ec86311 city_id user_id bc9eb71f-89fa-44bc-a365-e0aef2ff8c32
+"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -19,16 +33,16 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
     classes = {
-               'BaseModel': BaseModel, 'User': User, 'Place': Place,
-               'State': State, 'City': City, 'Amenity': Amenity,
-               'Review': Review
-              }
+        'BaseModel': BaseModel, 'User': User, 'Place': Place,
+        'State': State, 'City': City, 'Amenity': Amenity,
+        'Review': Review
+    }
     dot_cmds = ['all', 'count', 'show', 'destroy', 'update']
     types = {
-             'number_rooms': int, 'number_bathrooms': int,
-             'max_guest': int, 'price_by_night': int,
-             'latitude': float, 'longitude': float
-            }
+        'number_rooms': int, 'number_bathrooms': int,
+        'max_guest': int, 'price_by_night': int,
+        'latitude': float, 'longitude': float
+    }
 
     def preloop(self):
         """Prints if isatty is false"""
@@ -124,7 +138,8 @@ class HBNBCommand(cmd.Cmd):
                 arg_splited = arg.split("=")
                 arg_splited[1] = eval(arg_splited[1])
                 if type(arg_splited[1]) is str:
-                    arg_splited[1] = arg_splited[1].replace("_", " ").replace('"', '\\"')
+                    arg_splited[1] = arg_splited[1].replace(
+                        "_", " ").replace('"', '\\"')
                 kw[arg_splited[0]] = arg_splited[1]
         except SyntaxError:
             print("** class name missing **")
@@ -195,7 +210,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -325,6 +340,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
